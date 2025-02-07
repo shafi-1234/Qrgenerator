@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Generator</title>
+  <style>
+    /* Reset and Font */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Vibrant Background */
+    body {
+      background-color: #000;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    /* Container */
+    .container {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      border-radius: 15px;
+      width: 380px;
+      box-shadow: 0 8px 20px rgba(0, 255, 0, 0.3);
+    }
+
+    /* Animated Title Section */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    /* QR Icon Simulation */
+    .qr-icon {
+      width: 50px;
+      height: 50px;
+      background-color: #32CD32;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      animation: rotateQR 2s infinite alternate;
+    }
+
+    .qr-icon div {
+      width: 14px;
+      height: 14px;
+      background-color: black;
+    }
+
+    .qr-icon div:nth-child(odd) {
+      background-color: #32CD32;
+    }
+
+    @keyframes rotateQR {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(15deg); }
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: bold;
+      color: #32CD32;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* Input and Button Styles */
+    input {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      margin: 15px 0;
+      font-size: 16px;
+      color: #333;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #32CD32;
+      color: black;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(50, 205, 50, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(50, 205, 50, 0.7);
+    }
+
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 255, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="logo-container">
+    <div class="qr-icon">
+      <div></div><div></div><div></div>
+      <div></div><div></div><div></div>
+      <div></div><div></div><div></div>
+    </div>
+    <h1>QR Generator</h1>
+  </div>
+
+  <p>Enter Text or URL</p>
+  <input type="text" placeholder="Text or URL" id="qrtext">
+  <img src="" id="qrImage" alt="">
+  <button onclick="GenerateQR()">Generate QR Code</button>
+</div>
+
+<script>
+  let qrImage = document.getElementById('qrImage');
+  let qrtext = document.getElementById('qrtext');
+
+  function GenerateQR() {
+    if (qrtext.value.length > 0) {
+      qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" + qrtext.value;
+    } else {
+      alert("Please enter a valid text or URL.");
+    }
+  }
+</script>
+
+</body>
+</html>
